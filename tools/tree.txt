@@ -1,0 +1,44 @@
+.
+|-- group_vars
+|   |-- all
+|   `-- moosefs_all
+|-- moosefs.hosts
+|-- moosefs.yml
+|-- roles
+|   |-- common
+|   |   `-- tasks
+|   |       `-- main.yml
+|   |-- moosefs_chunkserver
+|   |   |-- handlers
+|   |   |   `-- main.yml
+|   |   |-- tasks
+|   |   |   `-- main.yml
+|   |   `-- templates
+|   |       |-- mfschunkserver.cfg.j2
+|   |       `-- mfshdd.cfg.j2
+|   |-- moosefs_client
+|   |   `-- tasks
+|   |       `-- main.yml
+|   |-- moosefs_common
+|   |   `-- tasks
+|   |       `-- main.yml
+|   |-- moosefs_master
+|   |   |-- files
+|   |   |   `-- index.html
+|   |   |-- handlers
+|   |   |   `-- main.yml
+|   |   |-- tasks
+|   |   |   `-- main.yml
+|   |   `-- templates
+|   |       |-- httpd.conf.j2
+|   |       |-- mfsexports.cfg.j2
+|   |       |-- mfsmaster.cfg.j2
+|   |       `-- mfsmetalogger.cfg.j2
+|   `-- moosefs_metalogger
+|       |-- handlers
+|       |   `-- main.yml
+|       |-- tasks
+|       |   `-- main.yml
+|       `-- templates
+|           `-- mfsmetalogger.cfg.j2
+`-- site.yml
