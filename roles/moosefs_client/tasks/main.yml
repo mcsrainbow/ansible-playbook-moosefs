@@ -1,0 +1,11 @@
+#mfsclient
+- name: install mfs client package
+  yum: name=mfs-client state=installed
+
+- name: create mfsclient mountpoint directory
+  file: path={{ item }} owner=daemon group=daemon state=directory mode=0755
+  with_items: moosefs.mfsmount
+
+- name: mount moosefs
+  raw: test -e {{ item }}/.mounted || mfsmount {{ item }} -H ${moosefs.master} && touch {{ item }}/.mounted
+  with_items: moosefs.mfsmount

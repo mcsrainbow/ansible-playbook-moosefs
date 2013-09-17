@@ -1,0 +1,13 @@
+[moosefs_all:children]
+moosefs_master
+moosefs_backup
+moosefs_datanode
+
+[moosefs_master]
+demoenv-master
+
+[moosefs_backup]
+demoenv-secondary
+
+[moosefs_datanode]
+demoenv-node-[1:3]

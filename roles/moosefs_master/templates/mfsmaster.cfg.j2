@@ -1,0 +1,40 @@
+# WORKING_USER = daemon
+# WORKING_GROUP = daemon
+# SYSLOG_IDENT = mfsmaster
+# LOCK_MEMORY = 0
+# NICE_LEVEL = -19
+
+# EXPORTS_FILENAME = /etc/mfs/mfsexports.cfg
+
+# TOPOLOGY_FILENAME = /etc/mfs/mfstopology.cfg
+
+# DATA_PATH = /var/mfs
+
+# BACK_LOGS = 50
+# BACK_META_KEEP_PREVIOUS = 1
+
+# REPLICATIONS_DELAY_INIT = 300
+# REPLICATIONS_DELAY_DISCONNECT = 3600
+
+# MATOML_LISTEN_HOST = *
+# MATOML_LISTEN_PORT = 9419
+
+# MATOCS_LISTEN_HOST = *
+# MATOCS_LISTEN_PORT = 9420
+
+# MATOCL_LISTEN_HOST = *
+# MATOCL_LISTEN_PORT = 9421
+
+# CHUNKS_LOOP_CPS = 100000
+# CHUNKS_LOOP_TIME = 300
+
+# CHUNKS_SOFT_DEL_LIMIT = 10
+# CHUNKS_HARD_DEL_LIMIT = 25
+# CHUNKS_WRITE_REP_LIMIT = 2
+# CHUNKS_READ_REP_LIMIT = 10
+
+# REJECT_OLD_CLIENTS = 0
+
+# deprecated:
+# CHUNKS_DEL_LIMIT - use CHUNKS_SOFT_DEL_LIMIT instead
+# LOCK_FILE - lock system has been changed, and this option is used only to search for old lockfile

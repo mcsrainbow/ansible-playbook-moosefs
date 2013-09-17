@@ -1,0 +1,33 @@
+# mfsmaster
+- name: copy the mfsmaster configurations
+  template: src={{ item }}.j2 dest=/etc/mfs/{{ item }} owner=root group=root mode=0644
+  with_items:
+    - mfsmaster.cfg
+    - mfsexports.cfg
+    - mfsmetalogger.cfg
+
+- name: create metadata.mfs
+  command: creates=metadata.mfs.back chdir=/var/mfs/ cp metadata.mfs.empty metadata.mfs
+
+- name: chown /var/mfs to daemon.daemon
+  file: path=/var/mfs owner=daemon group=daemon state=directory recurse=yes
+
+- name: start mfsmaster service
+  service: name=mfsmaster state=started
+
+# httpd
+- name: install httpd package
+  yum: name=httpd state=installed
+
+- name: copy the httpd configuration
+  template: src=httpd.conf.j2 dest=/etc/httpd/conf/httpd.conf owner=root group=root mode=0644
+  notify: restart httpd
+
+- name: install mfs-cgi package
+  yum: name=mfs-cgi state=installed
+
+- name: copy the index.html
+  copy: src=index.html dest=/var/www/html/mfs/index.html
+
+- name: start httpd service
+  service: name=httpd state=started

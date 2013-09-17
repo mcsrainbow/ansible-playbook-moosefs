@@ -1,0 +1,4 @@
+- name: create adm users
+  user: name={{ item }} group=adm
+  with_items:
+    - dong.guo

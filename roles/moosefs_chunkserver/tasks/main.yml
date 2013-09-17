@@ -1,0 +1,14 @@
+#mfschunkserver
+- name: copy the mfschunkserver configurations
+  template: src={{ item }}.j2 dest=/etc/mfs/{{ item }} owner=root group=root mode=0644
+  with_items:
+    - mfschunkserver.cfg
+    - mfshdd.cfg
+  notify: restart mfschunkserver
+
+- name: create mfshdd directories
+  file: path={{ item }} owner=daemon group=daemon state=directory mode=0755
+  with_items: moosefs.mfshdd
+
+- name: start mfschunkserver service
+  service: name=mfschunkserver state=started

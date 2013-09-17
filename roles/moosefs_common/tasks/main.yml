@@ -1,0 +1,5 @@
+- name: create rpmforge repo
+  command: creates=/etc/yum.repos.d/rpmforge.repo rpm -i http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm
+
+- name: install mfs common packages
+  yum: name=mfs state=installed

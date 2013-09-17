@@ -1,0 +1,6 @@
+# /etc/ansible/ansible.cfg
+# uncomment this to disable SSH key host checking
+host_key_checking = False
+
+# run ansbile playbook
+ansible-playbook -i moosefs.hosts site.yml -u dong.guo --sudo

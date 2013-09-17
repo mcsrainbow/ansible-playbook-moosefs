@@ -1,0 +1,8 @@
+---
+# The main playbook to deploy the site
+
+- hosts: all
+  roles:
+    - common
+
+- include: moosefs.yml

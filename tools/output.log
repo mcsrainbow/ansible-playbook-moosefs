@@ -1,0 +1,110 @@
+
+PLAY [all] ******************************************************************** 
+
+GATHERING FACTS *************************************************************** 
+ok: [demoenv-node-2]
+ok: [demoenv-secondary]
+ok: [demoenv-node-3]
+ok: [demoenv-node-1]
+ok: [demoenv-master]
+
+TASK: [create adm users] ****************************************************** 
+ok: [demoenv-node-3] => (item=dong.guo)
+ok: [demoenv-node-2] => (item=dong.guo)
+ok: [demoenv-secondary] => (item=dong.guo)
+ok: [demoenv-node-1] => (item=dong.guo)
+ok: [demoenv-master] => (item=dong.guo)
+
+PLAY [moosefs_all] ************************************************************ 
+
+TASK: [create rpmforge repo] ************************************************** 
+skipping: [demoenv-secondary]
+skipping: [demoenv-node-3]
+skipping: [demoenv-node-1]
+skipping: [demoenv-node-2]
+skipping: [demoenv-master]
+
+TASK: [install mfs common packages] ******************************************* 
+ok: [demoenv-node-1]
+ok: [demoenv-node-2]
+ok: [demoenv-secondary]
+ok: [demoenv-node-3]
+ok: [demoenv-master]
+
+PLAY [moosefs_master] ********************************************************* 
+
+TASK: [copy the mfsmaster configurations] ************************************* 
+ok: [demoenv-master] => (item=mfsmaster.cfg)
+ok: [demoenv-master] => (item=mfsexports.cfg)
+ok: [demoenv-master] => (item=mfsmetalogger.cfg)
+
+TASK: [create metadata.mfs] *************************************************** 
+skipping: [demoenv-master]
+
+TASK: [chown /var/mfs to daemon.daemon] *************************************** 
+ok: [demoenv-master]
+
+TASK: [start mfsmaster service] *********************************************** 
+ok: [demoenv-master]
+
+TASK: [install httpd package] ************************************************* 
+ok: [demoenv-master]
+
+TASK: [copy the httpd configuration] ****************************************** 
+ok: [demoenv-master]
+
+TASK: [install mfs-cgi package] *********************************************** 
+ok: [demoenv-master]
+
+TASK: [copy the index.html] *************************************************** 
+ok: [demoenv-master]
+
+TASK: [start httpd service] *************************************************** 
+ok: [demoenv-master]
+
+PLAY [moosefs_backup] ********************************************************* 
+
+TASK: [copy the mfsmetalogger configurations] ********************************* 
+ok: [demoenv-secondary] => (item=mfsmetalogger.cfg)
+
+TASK: [start mfsmetalogger service] ******************************************* 
+ok: [demoenv-secondary]
+
+TASK: [install mfs client package] ******************************************** 
+ok: [demoenv-secondary]
+
+TASK: [create mfsclient mountpoint directory] ********************************* 
+ok: [demoenv-secondary] => (item=/mnt/mfsmount)
+
+TASK: [mount moosefs] ********************************************************* 
+ok: [demoenv-secondary] => (item=/mnt/mfsmount)
+
+PLAY [moosefs_datanode] ******************************************************* 
+
+TASK: [copy the mfschunkserver configurations] ******************************** 
+ok: [demoenv-node-3] => (item=mfschunkserver.cfg)
+ok: [demoenv-node-1] => (item=mfschunkserver.cfg)
+ok: [demoenv-node-2] => (item=mfschunkserver.cfg)
+ok: [demoenv-node-3] => (item=mfshdd.cfg)
+ok: [demoenv-node-1] => (item=mfshdd.cfg)
+ok: [demoenv-node-2] => (item=mfshdd.cfg)
+
+TASK: [create mfshdd directories] ********************************************* 
+ok: [demoenv-node-1] => (item=/mnt/mfschunks1)
+ok: [demoenv-node-3] => (item=/mnt/mfschunks1)
+ok: [demoenv-node-2] => (item=/mnt/mfschunks1)
+ok: [demoenv-node-1] => (item=/mnt/mfschunks2)
+ok: [demoenv-node-3] => (item=/mnt/mfschunks2)
+ok: [demoenv-node-2] => (item=/mnt/mfschunks2)
+
+TASK: [start mfschunkserver service] ****************************************** 
+ok: [demoenv-node-3]
+ok: [demoenv-node-1]
+ok: [demoenv-node-2]
+
+PLAY RECAP ******************************************************************** 
+demoenv-master             : ok=11   changed=0    unreachable=0    failed=0   
+demoenv-node-1             : ok=6    changed=0    unreachable=0    failed=0   
+demoenv-node-2             : ok=6    changed=0    unreachable=0    failed=0   
+demoenv-node-3             : ok=6    changed=0    unreachable=0    failed=0   
+demoenv-secondary          : ok=8    changed=0    unreachable=0    failed=0

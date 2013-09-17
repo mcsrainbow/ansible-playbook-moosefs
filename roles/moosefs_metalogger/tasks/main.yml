@@ -1,0 +1,9 @@
+# mfsmetalogger
+- name: copy the mfsmetalogger configurations
+  template: src={{ item }}.j2 dest=/etc/mfs/{{ item }} owner=root group=root mode=0644
+  with_items:
+    - mfsmetalogger.cfg
+  notify: restart mfsmetalogger
+
+- name: start mfsmetalogger service
+  service: name=mfsmetalogger state=started
