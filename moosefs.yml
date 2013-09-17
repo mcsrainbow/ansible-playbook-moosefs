@@ -9,11 +9,11 @@
   roles:
     - role: moosefs_master
 
+- hosts: moosefs_datanode
+  roles:
+    - role: moosefs_chunkserver
+
 - hosts: moosefs_backup
   roles:
     - role: moosefs_metalogger
     - role: moosefs_client
-
-- hosts: moosefs_datanode
-  roles:
-    - role: moosefs_chunkserver
