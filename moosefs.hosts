@@ -1,19 +1,19 @@
-# The Inventory of MooseFS Hosts
+# The Inventory of moosefs Hosts
 
-# All MooseFS groups
-[MooseFS_all:children]
-MooseFS_master
-MooseFS_backup
-MooseFS_datanode
+# All moosefs groups
+[moosefs_all:children]
+moosefs_master
+moosefs_backup
+moosefs_datanode
 
-# Group of MooseFS master
-[MooseFS_master]
+# Group of moosefs master
+[moosefs_master]
 demoenv-master
 
-# Group of MooseFS backup server
-[MooseFS_backup]
+# Group of moosefs backup server
+[moosefs_backup]
 demoenv-secondary
 
-# Group of MooseFS datanode servers
-[MooseFS_datanode]
+# Group of moosefs datanode servers
+[moosefs_datanode]
 demoenv-node-[1:3]
